@@ -3,6 +3,10 @@ let input = document.getElementById("input");
 let msg = document.getElementById("msg");
 let posts = document.getElementById("posts");
 
+let data = {};
+
+let acceptData = () => {};
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   console.log("button clicked");
