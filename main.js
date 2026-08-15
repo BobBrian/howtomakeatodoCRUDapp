@@ -26,6 +26,7 @@ let formValidation = () => {
     msg.innerHTML = "";
     acceptData();
   }
+  createPost();
 };
 
 //Template literals are a way to write text strings in JavaScript using backticks (`) instead of quotes
