@@ -24,5 +24,6 @@ let formValidation = () => {
   } else {
     console.log("successs");
     msg.innerHTML = "";
+    acceptData();
   }
 };
