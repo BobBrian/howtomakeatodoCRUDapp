@@ -27,3 +27,7 @@ let formValidation = () => {
     acceptData();
   }
 };
+
+let createPost = () => {
+  posts.innerHTML += ``;
+};
