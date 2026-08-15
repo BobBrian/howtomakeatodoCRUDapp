@@ -4,8 +4,11 @@ let msg = document.getElementById("msg");
 let posts = document.getElementById("posts");
 
 let data = {};
-
-let acceptData = () => {};
+//Using the function, we collect data from the inputs and store them in our object named data. 
+let acceptData = () => {
+  data["text"] = input.value;
+  console.log(data);
+};
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
