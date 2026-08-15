@@ -28,6 +28,16 @@ let formValidation = () => {
   }
 };
 
+//Template literals are a way to write text strings in JavaScript using backticks (`) instead of quotes
 let createPost = () => {
-  posts.innerHTML += ``;
+  posts.innerHTML += `
+  <div>
+    <p>${data.text}</p>
+    <span class="options">
+      <i onClick="editPost(this)" class="fas fa-edit"></i>
+      <i onClick="deletePost(this)" class="fas fa-trash-alt"></i>
+    </span>
+  </div>
+  `;
+  input.value = "";
 };
