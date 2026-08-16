@@ -15,6 +15,11 @@ let deletePost = (e) => {
   e.parentElement.parentElement.remove();
 };
 
+let editPost = (e) => {
+  input.value = e.parentElement.previousElementSibling.innerHTML;
+  e.parentElement.parentElement.remove();
+};
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   console.log("button clicked");
