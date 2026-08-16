@@ -3,11 +3,11 @@ let input = document.getElementById("input");
 let msg = document.getElementById("msg");
 let posts = document.getElementById("posts");
 
-let data = {};
+let data = [];
 //Using the function, we collect data from the inputs and store them in our object named data. 
 let acceptData = () => {
-  data["text"] = input.value;
-  console.log(data);
+  data.push(input.value);
+  localStorage.setItem("posts", JSON.stringify(data));
   createPost();
 };
 
@@ -53,3 +53,20 @@ let createPost = () => {
   `;
   input.value = "";
 };
+
+let savedPosts = localStorage.getItem("posts");
+if (savedPosts) {
+  data = JSON.parse(savedPosts);
+
+  data.forEach((post) => {
+    posts.innerHTML += `
+      <div>
+        <p>${post}</p>
+        <span class="options">
+          <i onClick="editPost(this)" class="fas fa-edit"></i>
+          <i onClick="deletePost(this)" class="fas fa-trash-alt"></i>
+        </span>
+      </div>
+    `;
+  });
+}
