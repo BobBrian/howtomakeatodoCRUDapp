@@ -6,16 +6,23 @@ let posts = document.getElementById("posts");
 let data = [];
 //Using the function, we collect data from the inputs and store them in our object named data. 
 let acceptData = () => {
-  data.push(input.value);
+  let post = {
+    id: Date.now(),
+    text: input.value
+  };
+
+  data.push(post);
+
   localStorage.setItem("posts", JSON.stringify(data));
-  createPost();
+
+  createPost(post);
 };
 
 let deletePost = (e) => {
   let post = e.parentElement.parentElement;
-  let postText = post.querySelector("p").innerHTML;
+  let postId = Number(post.id);
 
-  data = data.filter((item) => item !== postText);
+  data = data.filter((post) => post.id !== postId);
 
   localStorage.setItem("posts", JSON.stringify(data));
 
@@ -24,11 +31,13 @@ let deletePost = (e) => {
 
 let editPost = (e) => {
   let post = e.parentElement.parentElement;
-  let postText = post.querySelector("p").innerHTML;
+  let postId = Number(post.id);
 
-  input.value = postText;
+  let postData = data.find((post) => post.id === postId);
 
-  data = data.filter((item) => item !== postText);
+  input.value = postData.text;
+
+  data = data.filter((post) => post.id !== postId);
 
   localStorage.setItem("posts", JSON.stringify(data));
 
@@ -56,32 +65,26 @@ let formValidation = () => {
 
 //Template literals are a way to write text strings in JavaScript using backticks (`) instead of quotes
 // The this keyword will refer to the element that fired the event. in our case, the this refers to the delete button.
-let createPost = () => {
+let createPost = (post) => {
   posts.innerHTML += `
-  <div>
-    <p>${data.text}</p>
-    <span class="options">
-      <i onClick="editPost(this)" class="fas fa-edit"></i>
-      <i onClick="deletePost(this)" class="fas fa-trash-alt"></i>
-    </span>
-  </div>
+    <div id="${post.id}">
+      <p>${post.text}</p>
+      <span class="options">
+        <i onClick="editPost(this)" class="fas fa-edit"></i>
+        <i onClick="deletePost(this)" class="fas fa-trash-alt"></i>
+      </span>
+    </div>
   `;
+
   input.value = "";
 };
 
 let savedPosts = localStorage.getItem("posts");
+
 if (savedPosts) {
   data = JSON.parse(savedPosts);
 
   data.forEach((post) => {
-    posts.innerHTML += `
-      <div>
-        <p>${post}</p>
-        <span class="options">
-          <i onClick="editPost(this)" class="fas fa-edit"></i>
-          <i onClick="deletePost(this)" class="fas fa-trash-alt"></i>
-        </span>
-      </div>
-    `;
+    createPost(post);
   });
 }
