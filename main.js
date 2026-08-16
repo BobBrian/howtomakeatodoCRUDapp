@@ -8,6 +8,7 @@ let data = {};
 let acceptData = () => {
   data["text"] = input.value;
   console.log(data);
+  createPost();
 };
 
 form.addEventListener("submit", (e) => {
@@ -26,7 +27,7 @@ let formValidation = () => {
     msg.innerHTML = "";
     acceptData();
   }
-  createPost();
+  
 };
 
 //Template literals are a way to write text strings in JavaScript using backticks (`) instead of quotes
