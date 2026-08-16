@@ -11,6 +11,8 @@ let acceptData = () => {
   createPost();
 };
 
+let deletePost = (e) => {};
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   console.log("button clicked");
