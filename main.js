@@ -12,12 +12,27 @@ let acceptData = () => {
 };
 
 let deletePost = (e) => {
-  e.parentElement.parentElement.remove();
+  let post = e.parentElement.parentElement;
+  let postText = post.querySelector("p").innerHTML;
+
+  data = data.filter((item) => item !== postText);
+
+  localStorage.setItem("posts", JSON.stringify(data));
+
+  post.remove();
 };
 
 let editPost = (e) => {
-  input.value = e.parentElement.previousElementSibling.innerHTML;
-  e.parentElement.parentElement.remove();
+  let post = e.parentElement.parentElement;
+  let postText = post.querySelector("p").innerHTML;
+
+  input.value = postText;
+
+  data = data.filter((item) => item !== postText);
+
+  localStorage.setItem("posts", JSON.stringify(data));
+
+  post.remove();
 };
 
 form.addEventListener("submit", (e) => {
