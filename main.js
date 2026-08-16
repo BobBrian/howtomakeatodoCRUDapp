@@ -11,7 +11,9 @@ let acceptData = () => {
   createPost();
 };
 
-let deletePost = (e) => {};
+let deletePost = (e) => {
+  e.parentElement.parentElement.remove();
+};
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -33,6 +35,7 @@ let formValidation = () => {
 };
 
 //Template literals are a way to write text strings in JavaScript using backticks (`) instead of quotes
+// The this keyword will refer to the element that fired the event. in our case, the this refers to the delete button.
 let createPost = () => {
   posts.innerHTML += `
   <div>
